@@ -10,6 +10,9 @@ import DeliveryScreen from "./screens/DeliveryScreen";
 // redux implementaion
 import { store } from "../redux/store";
 import { Provider } from "react-redux";
+import SignUpScreen from "./screens/auth/SignUpScreen";
+import LoginScreen from "./screens/auth/LoginScreen";
+import WelcomeScreen from "./screens/public/WelcomeScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,9 +24,21 @@ export default function Index() {
           screenOptions={{
             headerShown: false,
           }}
+          initialRouteName="Welcome"
         >
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Restaurant" component={RestorentScreen} />
+           <Stack.Screen
+            name="Welcome"
+            
+            component={WelcomeScreen}
+          />
+          <Stack.Screen 
+          name="Home" 
+          component={HomeScreen} 
+          />
+          <Stack.Screen 
+          name="Restaurant"
+           component={RestorentScreen} 
+           />
           <Stack.Screen
             name="Cart"
             options={{ presentation: "modal" }}
@@ -31,14 +46,21 @@ export default function Index() {
           />
           <Stack.Screen
             name="OrderPrepairing"
-            // options={{ presentation: "modal" }}
             component={OrderPrepairingScreen}
           />
           <Stack.Screen
             name="Delivery"
-            // options={{ presentation: "modal" }}
             component={DeliveryScreen}
           />
+           <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+          />
+           <Stack.Screen
+            name="Sign-up"
+            component={SignUpScreen}
+          />
+          
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

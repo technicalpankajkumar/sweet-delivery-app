@@ -7,7 +7,6 @@ import { useNavigation } from '@react-navigation/native'
 
 export default function RestaurantCard({item}) {
     const navigation = useNavigation()
-    console.log(item,"sss")
   return (
    <TouchableWithoutFeedback onPress={()=>navigation.navigate('Restaurant',{item})}>
      <View

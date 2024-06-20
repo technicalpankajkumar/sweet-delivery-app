@@ -12,8 +12,9 @@ export default function OrderPrepairingScreen() {
   })
   return (
     <View className="flex-1 bg-white justify-center items-center">
-      <Image source={require("../../assets/images/cooking-min.gif")} 
+      <Image source={require("../../assets/images/chef.jpg")} 
       className="h-80 w-80"/>
+      <Text className="animate-pulse text-3xl text-slate-200 font-bold py-2">Your order is prepairing........</Text>
     </View>
   )
 }
