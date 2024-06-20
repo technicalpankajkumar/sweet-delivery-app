@@ -1,0 +1,38 @@
+import { View, Text, TouchableWithoutFeedback,Image } from 'react-native'
+import React from 'react'
+import { themeColors } from '@/app/themes'
+import * as Icon from 'react-native-feather'
+import start from '../assets/images/star.png'
+import { useNavigation } from '@react-navigation/native'
+
+export default function RestaurantCard({item}) {
+    const navigation = useNavigation()
+    console.log(item,"sss")
+  return (
+   <TouchableWithoutFeedback onPress={()=>navigation.navigate('Restaurant',{item})}>
+     <View
+     style={{
+        shadowColor: themeColors.bgColor(0.5),
+        shadowRadius:7
+     }}
+     className="mr-6 bg-gray-100 rounded-xl showdow-lg w-40 text-wrap">
+        <Image className="h-28 w-40 rounded-t-xl" source={item?.image} />
+        <View className="px-3 pb-4 space-y-2">
+            <Text className="text-lg font-bold pt-2">{item?.name}</Text>
+            <View className="flex-row item-center space-x-1">
+                <Image className="h-4 w-4" source={start} />
+                <Text className="text-xs">
+                    <Text className="text-gray-700">
+                      <Text className="text-green-700" >{item?.ratings}</Text> ({item?.reviews} review)  <Text className="font-semibold">{item?.category}</Text>
+                    </Text>
+                </Text>
+            </View>
+            <View className="flex-row items-center space-x-1">
+                <Icon.MapPin color="gray" width="15" height="15" />
+                <Text className="text-gray-700 text-xs">Nearby . {item?.address}</Text>
+            </View>
+        </View>
+     </View>
+   </TouchableWithoutFeedback>
+  )
+}
