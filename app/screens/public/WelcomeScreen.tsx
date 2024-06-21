@@ -28,9 +28,9 @@ export default function WelcomeScreen() {
             </TouchableOpacity>
 
             <View className="flex-row justify-center">
-                <Text className="text-gray-600 font-semibold">Already have a account </Text>
+                <Text className="text-gray-600 font-semibold">Already have a account? </Text>
                 <TouchableOpacity onPress={()=>navigation.navigate("Login")}>
-                    <Text className="font-semibold text-green-600">Log In</Text>
+                    <Text className="font-semibold" style={{color:themeColors.bgColorSecond(1)}}>Log In</Text>
                 </TouchableOpacity>
             </View>
         </View>
