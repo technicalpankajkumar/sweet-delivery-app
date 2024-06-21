@@ -1,11 +1,25 @@
 import { View, Text, TouchableOpacity, SafeAreaView,Image, TextInput } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { ArrowLeft } from 'react-native-feather';
 import { useNavigation } from '@react-navigation/native';
 import { themeColors } from '@/app/themes';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '@/config/firebase';
 
 export default function SignUpScreen() {
     const navigation = useNavigation();
+    const [email,setEmail] = useState('')
+    const [password,setPassword] = useState('')
+
+    const handleSubmit = async()=>{
+        if(email && password){
+            try{
+                await createUserWithEmailAndPassword(auth,email,password)
+            }catch(err){
+                console.log("error log",err?.message)
+            }
+        }
+    }
     return (
       <SafeAreaView
         className={"flex-1"}
@@ -43,18 +57,21 @@ export default function SignUpScreen() {
             <Text className="text-gray-700 ml-4">Email Address</Text>
             <TextInput
               className="p-4 bg-gray-100 text-gray-700 rounded-2xl"
-              value="pankaj@pankaj_software.com"
+              value={email}
               placeholder="Enter the email"
+              onChangeText={(value) => setEmail(value)}
             />
             <Text className="text-gray-700 ml-4 ">Password</Text>
             <TextInput
               secureTextEntry
               className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-4"
-              value="password@123"
+              value={password}
               placeholder="Enter the password"
+              onChangeText={(value) => setPassword(value)}
             />
             
             <TouchableOpacity
+              onPress={handleSubmit}
               className="py-3 rounded-xl"
               style={{ backgroundColor: themeColors.bgColor(1) }}
             >
