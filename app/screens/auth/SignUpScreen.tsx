@@ -3,20 +3,31 @@ import React, { useState } from 'react'
 import { ArrowLeft } from 'react-native-feather';
 import { useNavigation } from '@react-navigation/native';
 import { themeColors } from '@/app/themes';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/config/firebase';
+import ToastMessage from '@/app/utils/ToastMessage';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+
 
 export default function SignUpScreen() {
     const navigation = useNavigation();
+    const [name,setName] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
 
     const handleSubmit = async()=>{
         if(email && password){
             try{
-                await createUserWithEmailAndPassword(auth,email,password)
+                await createUserWithEmailAndPassword(auth,email,password);
+           //   await userCredential.user.sendEmailVerification();
+                ToastMessage("Sign-up successfully done !")
+
             }catch(err){
-                console.log("error log",err?.message)
+                console.log(err,"err")
+                if (err?.code === 'auth/email-already-in-use') {
+                    ToastMessage('This email address is already in use.');
+                  } else {
+                      ToastMessage("Sign up crediential is wrong !")
+                  }
             }
         }
     }
@@ -40,7 +51,7 @@ export default function SignUpScreen() {
             style={{ width: 200, height: 200 }}
           />
           <Text className="text-2xl font-bold text-gray-100 pb-2">
-            NAINA SWEET HOUSE
+            NAINA SWEETS HOUSE
           </Text>
         </View>
         <View
@@ -51,7 +62,8 @@ export default function SignUpScreen() {
           <Text className="text-gray-700 ml-4">Full Name</Text>
             <TextInput
               className="p-4 bg-gray-100 text-gray-700 rounded-2xl"
-              value="pankaj kumar"
+              value={name}
+              onChangeText={(value)=> setName(value)}
               placeholder="Enter your name"
             />
             <Text className="text-gray-700 ml-4">Email Address</Text>

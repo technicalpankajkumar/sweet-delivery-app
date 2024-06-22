@@ -12,6 +12,7 @@ import OrderPrepairingScreen from "./screens/OrderPrepairingScreen";
 import DeliveryScreen from "./screens/DeliveryScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import useAuth from "@/hooks/useAuth";
+import ResetPasswordScreen from "./screens/auth/ResetPasswordScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,7 +26,7 @@ export default function AppNavigation() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName="Welcome"
+          initialRouteName="Home"
         >
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Restaurant" component={RestorentScreen} />
@@ -54,6 +55,7 @@ export default function AppNavigation() {
           <Stack.Screen name="Welcome" component={WelcomeScreen} />
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Sign-up" component={SignUpScreen} />
+          <Stack.Screen name="Reset-password" component={ResetPasswordScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );

@@ -1,3 +1,4 @@
+import ToastMessage from '@/app/utils/ToastMessage';
 import { createSelector, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
@@ -23,7 +24,7 @@ export const cartSlice = createSlice({
         if(itemIndex >=0){
             newCart.splice(itemIndex,1);
         }else{
-            console.log("cont't remove the item that is not added to cart !")
+            ToastMessage("cont't remove the item that is not added to cart !")
         }
         state.item = newCart;
     },

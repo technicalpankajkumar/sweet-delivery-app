@@ -5,14 +5,32 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
+  ToastAndroid,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { themeColors } from "@/app/themes";
 import { ArrowLeft } from "react-native-feather";
 import { useNavigation } from "@react-navigation/native";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/config/firebase";
+import ToastMessage from "@/app/utils/ToastMessage";
 
 export default function LoginScreen() {
   const navigation = useNavigation();
+  const [email,setEmail] = useState('')
+    const [password,setPassword] = useState('')
+
+    const handleLogin = async()=>{
+        if(email && password){
+            try{
+                await signInWithEmailAndPassword(auth,email,password);
+                ToastMessage("Login successfully done")
+            }catch(err){
+                ToastMessage("Login crediential is wrong !")
+            }
+        }
+    }
+
   return (
     <SafeAreaView
       className={"flex-1"}
@@ -33,7 +51,7 @@ export default function LoginScreen() {
           style={{ width: 200, height: 200 }}
         />
         <Text className="text-2xl font-bold text-gray-100 pb-2">
-          NAINA SWEET HOUSE
+          NAINA SWEETS HOUSE
         </Text>
       </View>
       <View
@@ -44,20 +62,25 @@ export default function LoginScreen() {
           <Text className="text-gray-700 ml-4">Email Address</Text>
           <TextInput
             className="p-4 bg-gray-100 text-gray-700 rounded-2xl"
-            value="pankaj@pankaj_software.com"
+            value={email}
             placeholder="Enter the email"
+            onChangeText={(value) => setEmail(value)}
           />
           <Text className="text-gray-700 ml-4">Password</Text>
           <TextInput
             secureTextEntry
             className="p-4 bg-gray-100 text-gray-700 rounded-2xl"
-            value="password@123"
+            value={password}
             placeholder="Enter the password"
+            onChangeText={(value) => setPassword(value)}
           />
-          <TouchableOpacity className="flex items-end mb-5">
-            <Text className="text-gray-700 ml-4">Forget password ?</Text>
+          <TouchableOpacity 
+            onPress={()=>navigation.navigate('Reset-password')}
+            className="flex items-end mb-5">
+            <Text className="text-gray-700 ml-4">Reset password ?</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={handleLogin}
             className="py-3 rounded-xl"
             style={{ backgroundColor: themeColors.bgColor(1) }}
           >

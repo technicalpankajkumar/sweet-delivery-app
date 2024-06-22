@@ -7,7 +7,6 @@ export default function useAuth(){
 
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth,user => {
-             console.log(user,"get user")
             if(user){
                 setUser(user)
             }else{

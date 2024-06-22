@@ -7,11 +7,19 @@ import FeatureRow from '@/components/FeatureRow'
 import { features } from '../constants'
 import { signOut } from 'firebase/auth'
 import { auth } from '@/config/firebase'
+import ToastMessage from '../utils/ToastMessage'
+import useAuth from '@/hooks/useAuth'
 
 export default function HomeScreen() {
+  const {user} = useAuth();
   const handleLogout= async()=>{
-        await signOut(auth)
+        await signOut(auth);
+        ToastMessage("User succesfully logout!")
   }
+
+
+  console.log(user,"sssss user");
+  
   return (
     <SafeAreaView className={'bg-white h-full'}>
         <StatusBar barStyle="dark-content"/>
