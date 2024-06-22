@@ -18,11 +18,9 @@ export default function SignUpScreen() {
         if(email && password){
             try{
                 await createUserWithEmailAndPassword(auth,email,password);
-           //   await userCredential.user.sendEmailVerification();
+            //  await sendEmailVerification();
                 ToastMessage("Sign-up successfully done !")
-
             }catch(err){
-                console.log(err,"err")
                 if (err?.code === 'auth/email-already-in-use') {
                     ToastMessage('This email address is already in use.');
                   } else {

@@ -17,9 +17,6 @@ export default function HomeScreen() {
         ToastMessage("User succesfully logout!")
   }
 
-
-  console.log(user,"sssss user");
-  
   return (
     <SafeAreaView className={'bg-white h-full'}>
         <StatusBar barStyle="dark-content"/>
