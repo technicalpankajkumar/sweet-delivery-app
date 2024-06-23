@@ -13,6 +13,7 @@ import DeliveryScreen from "./screens/DeliveryScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import useAuth from "@/hooks/useAuth";
 import ResetPasswordScreen from "./screens/auth/ResetPasswordScreen";
+import SplashScreen from "./screens/public/SplashScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,23 +23,12 @@ export default function AppNavigation() {
   if (user) {
     return (
       <NavigationContainer independent={true}>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}
-          initialRouteName="Home"
-        >
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Restaurant" component={RestorentScreen} />
-          <Stack.Screen
-            name="Cart"
-            options={{ presentation: "modal" }}
-            component={CartScreen}
-          />
-          <Stack.Screen
-            name="OrderPrepairing"
-            component={OrderPrepairingScreen}
-          />
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Splash">
+          <Stack.Screen name="Splash" component={SplashScreen}/>
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Restaurant" component={RestorentScreen} />
+          <Stack.Screen name="Cart" options={{ presentation: "modal" }} component={CartScreen}/>
+          <Stack.Screen name="OrderPrepairing" component={OrderPrepairingScreen}/>
           <Stack.Screen name="Delivery" component={DeliveryScreen} />
         </Stack.Navigator>
       </NavigationContainer>
@@ -46,12 +36,8 @@ export default function AppNavigation() {
   } else {
     return (
       <NavigationContainer independent={true}>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}
-          initialRouteName="Welcome"
-        >
+        <Stack.Navigator screenOptions={{ headerShown: false, }} initialRouteName="Splash" >
+          <Stack.Screen name="Splash" component={SplashScreen}/>
           <Stack.Screen name="Welcome" component={WelcomeScreen} />
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Sign-up" component={SignUpScreen} />

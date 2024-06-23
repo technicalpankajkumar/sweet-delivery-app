@@ -56,7 +56,7 @@ export default function LoginScreen() {
       </View>
       <View
         style={{ borderTopLeftRadius: 50, borderTopRightRadius: 50 }}
-        className="flex-1 bg-white px-8 pt-8"
+        className="flex-1 bg-white px-8 pt-8 fixed bottom-0 left-0 right-0 z-10"
       >
         <View className="form space-y-2">
           <Text className="text-gray-700 ml-4">Email Address</Text>

@@ -1,17 +1,14 @@
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
 import React from 'react'
 import { themeColors } from '@/app/themes'
-import RestaurantCard from './RestaurantCard'
+import RestaurantCard from '../RestaurantCard'
 
-export default function FeatureRow({title,restaurants,description}) {
+export default function TodayDeals({title,restaurants,description}) {
   return (
     <View>
       <View className="flex-row justify-between items-center px-4">
         <View>
-            <View className={"gap-3 relative flex flex-row items-center"}>
-            <Text className="animate-ping font-bold text-lg">{title}</Text>
-            <View className="absolute top-1 -right-3 rounded-full h-2 w-2 bg-red-500 animate-bounce"></View>
-            </View>
+            <Text className="font-bold text-lg">{title}</Text>
             <Text className="text-gray-500 text-xs">{description}</Text>
         </View>
         <TouchableOpacity>

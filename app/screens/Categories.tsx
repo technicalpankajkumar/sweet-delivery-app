@@ -5,11 +5,11 @@ import {Category} from '../constants/index'
 export default function Categories() {
     const [activeCategory,setActiveCategory] = useState(null)
   return (
-    <View>
+    <View className="p-0">
       <ScrollView horizontal showsHorizontalScrollIndicator={false}
        className="overflow-visible"
        contentContainerStyle={{
-        paddingHorizontal:15
+        paddingHorizontal:10
        }}>
         {
             Category?.map((categ,index)=>{

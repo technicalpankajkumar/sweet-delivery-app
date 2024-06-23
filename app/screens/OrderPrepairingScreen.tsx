@@ -9,7 +9,7 @@ export default function OrderPrepairingScreen() {
     setTimeout(()=>{
        navigation.navigate('Delivery')
     },2000)
-  })
+  },[])
   return (
     <View className="flex-1 bg-white justify-center items-center">
       <Image source={require("../../assets/images/chef.jpg")} 
